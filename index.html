@@ -62,7 +62,8 @@
     <h2 id="status"></h2>
     <button id="restart">Restart</button>
 
-    <script>// Initial game state: an array representing the board and the current player
+    <script>
+        // Initial game state: an array representing the board and the current player
         let board = ['', '', '', '', '', '', '', '', ''];
         let currentPlayer = 'X'; // The first player is 'X'
         let isGameActive = true; // Tracks whether the game is ongoing
@@ -100,9 +101,11 @@
 
             // Check for a winner after each move
             checkForWinner();
-            
-            // Change player if the game is still active
-            changePlayer();
+
+            // If the game is still active, change the player
+            if (isGameActive) {
+                changePlayer();
+            }
         }
 
         // Function to switch between players
@@ -126,14 +129,14 @@
 
             // If the current player has won, display the winner and stop the game
             if (roundWon) {
-                statusDisplay.textContent = `Player ${currentPlayer} has won!`;
+                statusDisplay.textContent = `Game Over! Player ${currentPlayer} has won!`;
                 isGameActive = false; // End the game
                 return;
             }
 
             // If the board is full and there's no winner, declare a draw
             if (!board.includes('')) {
-                statusDisplay.textContent = 'Game is a draw!';
+                statusDisplay.textContent = 'Game Over! It\'s a draw!';
                 isGameActive = false; // End the game
             }
         }
